@@ -42,13 +42,14 @@ print(cancer.target)
 from sklearn.model_selection import train_test_split
 
 # Split dataset into training set and test set
-X_train, X_test, y_train, y_test = train_test_split(cancer.data, cancer.target, test_size=0.10,random_state=109) # 70% training and 30% test
-
+#X_train, X_test, y_train, y_test = train_test_split(cancer.data, cancer.target, test_size=0.95,random_state=109) # 70% training and 30% test
+X_train, X_test, y_train, y_test = train_test_split(cancer.data, cancer.target, test_size=0.15,random_state=109)
 #Import svm model
 from sklearn import svm
 
 #Create a svm Classifier
-clf = svm.SVC(kernel='linear', C=1000) # Also test Linear Kernel
+#clf = svm.SVC(kernel='rbf', C=10)
+clf = svm.SVC(kernel='rbf', C=1, gamma=0.0001) # Also test Linear Kernel
 
 #Train the model using the training sets
 clf.fit(X_train, y_train)

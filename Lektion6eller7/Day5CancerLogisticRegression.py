@@ -42,19 +42,25 @@ print(cancer.target)
 from sklearn.model_selection import train_test_split
 
 # Split dataset into training set and test set
-X_train, X_test, y_train, y_test = train_test_split(cancer.data, cancer.target, test_size=0.95,random_state=109) # 70% training and 30% test
+X_train, X_test, y_train, y_test = train_test_split(cancer.data, cancer.target, test_size=0.20,random_state=109) # 70% training and 30% test
 
 #Import svm model
-from sklearn import svm
+#from sklearn import svm
+from sklearn.linear_model import LogisticRegression
 
 #Create a svm Classifier
-clf = svm.SVC(kernel='rbf', C=10) # Also test Linear Kernel
+#clf = svm.SVC(kernel='rbf', C=10) # Also test Linear Kernel
+
+logreg = LogisticRegression(C=100, intercept_scaling=1, max_iter=10000, multi_class='ovr', n_jobs=1,
+        random_state=None, solver='liblinear', tol=0.0001,
+        verbose=0, warm_start=False)
 
 #Train the model using the training sets
-clf.fit(X_train, y_train)
+#clf.fit(X_train, y_train)
+logreg.fit(X_train, y_train)
 
 #Predict the response for test dataset
-y_pred = clf.predict(X_test)
+y_pred = logreg.predict(X_test)
 
 #Import scikit-learn metrics module for accuracy calculation
 from sklearn import metrics
