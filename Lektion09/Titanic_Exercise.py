@@ -62,7 +62,7 @@ xtest = scaler.transform(xtest)
 
 #batch size 5 = 0,73, batch size 10 = 0,71
 #learning rate init default = 0.001
-mlp = MLPClassifier(hidden_layer_sizes=(12, 8), max_iter=1000, batch_size='auto')
+mlp = MLPClassifier(hidden_layer_sizes=(12, 8), max_iter=2000, batch_size='auto', alpha=0.05)
 mlp.fit(xtrain, ytrain)
 
 predictions = mlp.predict(xtest)
